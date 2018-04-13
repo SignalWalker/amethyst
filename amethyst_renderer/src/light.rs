@@ -30,14 +30,14 @@ pub struct DirectionalLight {
     /// Color of the light in RGBA8 format.
     pub color: Rgba,
     /// Direction that the light is pointing.
-    pub direction: [f32; 3], //TODO: Replace with a cgmath type when gfx version > 0.16
+    //pub direction: [f32; 3], //TODO: Replace with a cgmath type when gfx version > 0.16
 }
 
 impl Default for DirectionalLight {
     fn default() -> Self {
         DirectionalLight {
             color: Rgba::default(),
-            direction: [-1.0, -1.0, -1.0],
+            //direction: [-1.0, -1.0, -1.0],
         }
     }
 }
@@ -72,7 +72,7 @@ impl From<DirectionalLight> for Light {
 #[derive(Clone, ConstantBuffer, Debug, Deserialize, PartialEq, Serialize)]
 pub struct PointLight {
     /// Location of the light source in three dimensional space.
-    pub center: [f32; 3], //TODO: Replace with a cgmath type when gfx version > 0.16
+    //pub center: [f32; 3], //TODO: Replace with a cgmath type when gfx version > 0.16
     /// Color of the light in RGBA8 format.
     pub color: Rgba,
     /// Brightness of the light source, in lumens.
@@ -87,7 +87,7 @@ pub struct PointLight {
 impl Default for PointLight {
     fn default() -> Self {
         PointLight {
-            center: [0.0, 0.0, 0.0],
+            //center: [0.0, 0.0, 0.0],
             color: Rgba::default(),
             intensity: 10.0,
             radius: 10.0,
@@ -109,11 +109,11 @@ pub struct SpotLight {
     /// Opening angle of the light cone in degrees.
     pub angle: f32, //TODO: Replace with a cgmath type when gfx version > 0.16
     /// Location of the light source in three dimensional space.
-    pub center: [f32; 3], //TODO: Replace with a cgmath type when gfx version > 0.16
+    //pub center: [f32; 3], //TODO: Replace with a cgmath type when gfx version > 0.16
     /// Color of the light in RGBA8 format.
     pub color: Rgba,
     /// Direction that the light is pointing.
-    pub direction: [f32; 3], //TODO: Replace with a cgmath type when gfx version > 0.16
+    //pub direction: [f32; 3], //TODO: Replace with a cgmath type when gfx version > 0.16
     /// Brightness of the light source, in lumens.
     pub intensity: f32,
     /// Maximum radius of the point light's affected area.
@@ -127,9 +127,9 @@ impl Default for SpotLight {
     fn default() -> Self {
         SpotLight {
             angle: 60.0,
-            center: [0.0, 1.0, 0.0],
+            //center: [0.0, 1.0, 0.0],
             color: Rgba::default(),
-            direction: [0.0, -1.0, 0.0],
+            //direction: [0.0, -1.0, 0.0],
             intensity: 10.0,
             radius: 10.0,
             smoothness: 4.0,
