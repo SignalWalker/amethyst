@@ -44,16 +44,19 @@ unsafe impl Pod for DirectionalLightPod {}
 pub(crate) fn set_light_args(
     effect: &mut Effect,
     encoder: &mut Encoder,
-    light: &ReadStorage<Light>,
+    lights: &ReadStorage<Light>,
+    transforms: &ReadStorage<GlobalTransform>,
     ambient: &AmbientColor,
     camera: Option<(&Camera, &GlobalTransform)>,
 ) {
-    let point_lights: Vec<PointLightPod> = light
+    let point_lights: Vec<PointLightPod> = (lights, transforms)
         .join()
-        .filter_map(|light| {
+        .filter_map(|(light, transf)| {
             if let Light::Point(ref light) = *light {
+                let pos = transf.0.w;
+                let pos = [pos.x, pos.y, pos.z];
                 Some(PointLightPod {
-                    position: pad(light.center.into()),
+                    position: pad(pos),
                     color: pad(light.color.into()),
                     intensity: light.intensity,
                     _pad: [0.0; 3],
@@ -64,7 +67,7 @@ pub(crate) fn set_light_args(
         })
         .collect();
 
-    let directional_lights: Vec<DirectionalLightPod> = light
+    let directional_lights: Vec<DirectionalLightPod> = (lights)
         .join()
         .filter_map(|light| {
             if let Light::Directional(ref light) = *light {
