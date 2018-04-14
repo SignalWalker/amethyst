@@ -1,6 +1,7 @@
 # Authors
 
 * Aceeri
+* Ash Walker
 * Colin Sherratt
 * Demur Rumed
 * Douglas Eugene Reisinger II
